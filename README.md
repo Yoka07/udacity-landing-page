@@ -2,9 +2,6 @@
 
 ## Table of Contents
 Navigation
-  1. append all elements to the navigation
-  2. remove the active class
-  3. adding the active class
 Section Active State
 Scrolling
 
