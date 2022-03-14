@@ -23,12 +23,12 @@
  * 
  */
 // navigation global var
-const navigation = document.getElementById('navbar__list');
+const nav = document.getElementById('navbar__list');
 // sections global var
 const sections = document.querySelectorAll('section');
 
 //Get the button:
-mybutton = document.getElementById("myBtn");
+
 
 /**
  * End Global Variables
@@ -59,7 +59,7 @@ const navBuilder = () => {
 
     });
     // append all elements to the navigation
-    navigation.innerHTML = navUI;
+    nav.innerHTML = navUI;
 
 
 };
@@ -82,7 +82,8 @@ const removeActive = (section) => {
 const addActive = (conditional, section) => {
     if (conditional) {
         section.classList.add('your-active-class');
-        section.style.cssText = "background-color: pink";
+        section.style.cssText = "background-color: none";
+
     };
 };
 
@@ -92,10 +93,10 @@ const sectionActivation = () => {
     sections.forEach(section => {
         const elementOffset = offset(section);
 
-        inviewport = () => elementOffset < 150 && elementOffset >= -150;
+        onviewport = () => elementOffset < 150 && elementOffset >= -150;
 
         removeActive(section);
-        addActive(inviewport(), section);
+        addActive(onviewport(), section);
     });
 };
 
@@ -105,7 +106,7 @@ window.addEventListener('scroll', sectionActivation);
 
 const scrolling = () => {
 
-    const links = document.querySelectorAll('.navbar__menu a');
+    const links = document.querySelectorAll('.navbar__menu');
     links.forEach(link => {
         link.addEventListener('click', () => {
             for (i = 0; i < sections; i++) {
@@ -115,27 +116,64 @@ const scrolling = () => {
     });
 
 };
-
 scrolling();
 
-// scroll to top Button
 
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() { scrollFunction() };
 
-function scrollFunction() {
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        mybutton.style.display = "block";
+
+/*Scroll to top when arrow up clicked BEGIN*/
+$(window).scroll(function() {
+    var height = $(window).scrollTop();
+    if (height > 100) {
+        $('#back2Top').fadeIn();
     } else {
-        mybutton.style.display = "none";
+        $('#back2Top').fadeOut();
+    }
+});
+$(document).ready(function() {
+    $("#back2Top").click(function(event) {
+        event.preventDefault();
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+        return false;
+    });
+    1
+});
+/*Scroll to top when arrow up clicked END*/
+
+
+// w3school slideshow
+w3.slideshow(".ojum", 1000);
+
+/* onclick para1 show and hide(section 1) */
+
+function myFunction_hide_show() {
+    var ap = document.getElementById("hs");
+    ap.style.backgroundColor = "black";
+    if (ap.style.display === "none") {
+        ap.style.display = "block";
+    } else {
+        ap.style.display = "none";
+
     }
 }
 
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-    document.body.scrollTop = 0; // For Safari
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+// w3school slideshow (section 2)
+w3.slideshow(".bari_image", 1000);
+
+/* onclick event change the text color(section 3)*/
+function myFunction_txt_colr(para_m, color) {
+    para_m.style.color = color;
 }
+
+/*The onmousedown, onmouseup and onclick Events(section 4)*/
+function mDown(md) {
+    md.innerHTML = "PLease Visit Again";
+}
+
+function mUp(md) {
+    md.innerHTML = "Thank You";
+}
+
 
 /**
  * End Main Functions
