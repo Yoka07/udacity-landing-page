@@ -1,127 +1,115 @@
-/**
- * 
- * Manipulating the DOM exercise.
- * Exercise programmatically builds navigation,
- * scrolls to anchors from navigation,
- * and highlights section in viewport upon scrolling.
- * 
- * Dependencies: None
- * 
- * JS Version: ES2015/ES6
- * 
- * JS Standard: ESlint
- * 
- */
+// global varibales
+const menu = document.getElementById('navbar__list');
+const sections = [...document.querySelectorAll('section')]
 
-/**
- * Comments should be present at the beginning of each procedure and class.
- * Great to have comments before crucial code sections within the procedure.
- */
+/* 
+// https://stackoverflow.com/questions/66734872/i-cant-create-a-dynamic-navigation-menu-using-pure-javascript
 
-/**
- * Define Global Variables
- * 
- */
-// navigation global var
-const nav = document.getElementById('navbar__list');
-// sections global var
-const sections = document.querySelectorAll('section');
+// Dynamic navigation bar
 
-//Get the button:
+*/
+const nav_menu_items = () => {
+    let nav_menu_container = '';
 
-
-/**
- * End Global Variables
- * Start Helper Functions
- * 
- */
-
-
-
-/**
- * End Helper Functions
- * Begin Main Functions
- * 
- */
-
-// build the nav
-
-const navBuilder = () => {
-
-    let navUI = '';
-    // looping over all sections
     sections.forEach(section => {
 
         const sectionID = section.id;
         const sectionDataNav = section.dataset.nav;
-
-        navUI += `<li><a class="menu__link" href="#${sectionID}">${sectionDataNav}</a></li>`;
+        nav_menu_container += `<li><a class="menu__link" href="#${sectionID}">${sectionDataNav}</a></li>`;
 
     });
     // append all elements to the navigation
-    nav.innerHTML = navUI;
+    menu.innerHTML = nav_menu_container;
+}
+nav_menu_items();
 
-
-};
-
-navBuilder();
+/* Code for changing active 
+            link on clicking */
 
 // Add class 'active' to section when near top of viewport
 
 // getting the largest value that's less or equal to the number
-const offset = (section) => {
-    return Math.floor(section.getBoundingClientRect().top);
-};
-
-// remove the active class
-const removeActive = (section) => {
-    section.classList.remove('your-active-class');
-    section.style.cssText = "background-color: linear-gradient(0deg, rgba(255,255,255,.1) 0%, rgba(255,255,255,.2) 100%)";
-};
-// adding the active class
-const addActive = (conditional, section) => {
-    if (conditional) {
-        section.classList.add('your-active-class');
-        section.style.cssText = "background-color: none";
-
-    };
-};
 
 //implementating the actual function
 
-const sectionActivation = () => {
-    sections.forEach(section => {
-        const elementOffset = offset(section);
+/* Make the current section (at the top of viewport) active 
 
-        onviewport = () => elementOffset < 150 && elementOffset >= -150;
+//https://stackoverflow.com/questions/70939268/i-want-to-add-class-your-active-class-to-section-when-near-top-of-viewport-in
 
-        removeActive(section);
-        addActive(onviewport(), section);
-    });
-};
+*/
 
-window.addEventListener('scroll', sectionActivation);
+const section_view = document.querySelectorAll('section');
+
+const isInViewport = (section) => {
+    const { top } = section.getBoundingClientRect();
+
+    section.classList.toggle('active', top >= 0);
+}
+
+const toggleActiveClass = () => {
+    sections.forEach(isInViewport);
+}
+
+document.addEventListener('scroll', toggleActiveClass);
+
+
+
+
+
+/* Make the active section's tab active in the navigation bar
 
 // Scroll to anchor ID using scrollTO event
 
-const scrolling = () => {
+//Change navigation style on scroll
 
-    const links = document.querySelectorAll('.navbar__menu');
-    links.forEach(link => {
-        link.addEventListener('click', () => {
-            for (i = 0; i < sections; i++) {
-                sections[i].addEventListener("click", sectionScroll(link));
-            }
+// https://codepen.io/api_05/pen/PoEWqqo
+*/
+
+$(document).ready(function() {
+    $(document).on("scroll", onScroll);
+
+    //smoothscroll
+    $('a[href^="#"]').on('click', function(e) {
+        e.preventDefault();
+        $(document).off("scroll");
+
+        $('a').each(function() {
+            $(this).removeClass('your-active-class');
+        })
+        $(this).addClass('your-active-class');
+
+        var target = this.hash,
+            menu = target;
+        $target = $(target);
+        $('html, body').stop().animate({
+            'scrollTop': $target.offset().top + 2
+        }, 500, 'swing', function() {
+            window.location.hash = target;
+            $(document).on("scroll", onScroll);
         });
     });
+});
 
+
+function onScroll(event) {
+    var scrollPos = $(document).scrollTop();
+    $('.menu__link a ').each(function() {
+        var currLink = $(this);
+        var refElement = $(currLink.attr("href"));
+        if (refElement.position().top <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
+            $('.menu__link a').removeClass('your-active-class');
+            currLink.addClass('your-active-class');
+        } else {
+            currLink.removeClass('your-active-class');
+        }
+    });
 };
-scrolling();
-
 
 
 
 /*Scroll to top when arrow up clicked BEGIN*/
+// https://kristujayanti.edu.in/home/
+
 $(window).scroll(function() {
     var height = $(window).scrollTop();
     if (height > 100) {

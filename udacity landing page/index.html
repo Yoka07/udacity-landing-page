@@ -23,8 +23,6 @@
             <ul id="navbar__list"></ul>
         </nav>
     </header>
-
-
     <main>
         <header class="main__hero">
             <h1>Landing Page </h1>
@@ -41,70 +39,73 @@
 a data attribute that will populate the li node.
 Adding more sections will automatically populate nav.
 The first section is set to active class by default -->
-        <section id="arunachal" data-nav="arunachal" class="your-active-class">
-            <div class="landing__container">
-                <h2>Arunachal Pardesh</h2>
-                <!--toggle button: hide and show-->
-                <button onclick="myFunction_hide_show()">Click here</button>
-                <div id="hs">
-                    <p id="ar">
-                        Arunachal Pradesh is a state in Northeastern India.<br> It was formed from the erstwhile North-East Frontier Agency region,<br>and became a state on 20 February 1987. <br>It borders the states of Assam and Nagaland to the south.
-                    </p>
-                </div>
-            </div>
-        </section>
-        <section id="baririjo" data-nav="baririjo" class="your-active-class">
-            <div class="landing__container ">
-                <h2>Baririjo</h2>
-                <!--grid container-->
-                <div class="grid-container">
-                    <div class="grid-item">
-                        <p id="p_b">
-                            Baririjo is a Town in Baririjo <br>Tehsil in Upper Subansiri District <br> of Arunachal Pradesh State, India.
+        <div class="main_content">
+            <section id="arunachal" data-nav="arunachal" class="your-active-class">
+                <div class="landing__container">
+                    <h2>Arunachal Pardesh</h2>
+                    <!--toggle button: hide and show-->
+                    <button onclick="myFunction_hide_show()">Click here</button>
+                    <div id="hs">
+                        <p id="ar">
+                            Arunachal Pradesh is a state in Northeastern India.<br> It was formed from the erstwhile North-East Frontier Agency region,<br>and became a state on 20 February 1987. <br>It borders the states of Assam and Nagaland to the south.
                         </p>
-
                     </div>
-                    <div class="grid-item">
-                        <!--slideshow -->
-                        <div class="slideshow_bari">
-                            <img id="img_b1" class="bari_image" src="/images/b11.jpg" alt="b2">
-                            <img id="img_b2" class="bari_image" src="/images/b2.jpg" alt="b2">
-                            <img id="img_b3" class="bari_image" src="/images/b3.jpg" alt="b3">
+                </div>
+            </section>
+            <section id="baririjo" data-nav="baririjo" class="your-active-class">
+                <div class="landing__container ">
+                    <h2>Baririjo</h2>
+                    <!--grid container-->
+                    <div class="grid-container">
+                        <div class="grid-item">
+                            <p id="p_b">
+                                Baririjo is a Town in Baririjo <br>Tehsil in Upper Subansiri District <br> of Arunachal Pradesh State, India.
+                            </p>
+                        </div>
+                        <div class="grid-item">
+                            <!--slideshow -->
+                            <div class="slideshow_bari">
+                                <img id="img_b1" class="bari_image" src="/images/b11.jpg" alt="b2">
+                                <img id="img_b2" class="bari_image" src="/images/b2.jpg" alt="b2">
+                                <img id="img_b3" class="bari_image" src="/images/b3.jpg" alt="b3">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        <section id="mechukha" data-nav="mechukha" class="your-active-class">
-            <div class="landing__container ">
-                <h2>Mechuka</h2>
-                <div class="mec">
-                    <!-- onclick event: onclick change the paragraph color-->
-                    <p id="p_m" onclick="myFunction_txt_colr(this, 'yellow')">
-                        Mechukha or Menchukha is a town, assembly constituency and subdivision, <br>situated 6,000 feet above sea level in the <br> Mechukha Valley of Yargep Chu/ Siyom River in Shi Yomi district of Arunachal Pradesh state of India.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section id="perpi" data-nav="perpi" class="your-active-class">
-            <div class="landing__container ">
-                <h2>Perpi</h2>
-                <!--event: mouseup and mousedown-->
-                <div class="mousedownup">
-                    <div onmousedown="mDown(this)" onmouseup="mUp(this)">
-                        Click Here
+            </section>
+            <section id="mechuka" data-nav="mechuka" class="your-active-class">
+                <div class="landing__container ">
+                    <h2>Mechuka</h2>
+                    <div class="mec">
+                        <!-- onclick event: onclick change the paragraph color-->
+                        <p id="p_m" onclick="myFunction_txt_colr(this, 'yellow')">
+                            Mechukha or Menchukha is a town, assembly constituency and subdivision, <br>situated 6,000 feet above sea level in the <br> Mechukha Valley of Yargep Chu/ Siyom River in Shi Yomi district of Arunachal Pradesh state of India.
+                        </p>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+            <section id="perpi" data-nav="perpi" class="your-active-class">
+                <div class="landing__container ">
+                    <h2>Perpi</h2>
+                    <!--event: mouseup and mousedown-->
+                    <div class="mousedownup">
+                        <div onmousedown="mDown(this)" onmouseup="mUp(this)">
+                            Click Here
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
     </main>
+
+    <!--Add a scroll to top button on the page that’s only visible when the user scrolls below the fold of the page-->
     <a id="back2Top" title="Back to top" href="#" style="display:inline;">➤</a>
     <footer class="page__footer">
         <p>&copy Udacity</p>
     </footer>
     <script defer src="js/app.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://www.w3schools.com/lib/w3.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 </html>
